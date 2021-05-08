@@ -5,15 +5,12 @@ using UnityEngine;
 public class Rotator : MonoBehaviour
 {
     public float speed = 120f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.down* speed * Time.deltaTime);
+     // Rotate the player legs
+     transform.Rotate(Vector3.down * speed * Time.deltaTime);  
+       
     }
 }
