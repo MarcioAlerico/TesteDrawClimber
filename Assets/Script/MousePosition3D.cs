@@ -12,10 +12,10 @@ public class MousePosition3D : MonoBehaviour
     public GameObject brush;
     public List <GameObject> list;
 
-    public Transform legPos;
-    private int i;
-    
-    public void Spawn(Vector3 legPos)
+    public GameObject legRPos;
+    public GameObject legLPos;
+    private int i;    
+    public void LegCreation(Vector3 legPos)
     {
         
         var newLegPart = Instantiate(legPart,legPos,brush.transform.rotation);
@@ -24,16 +24,26 @@ public class MousePosition3D : MonoBehaviour
         {
             list[i].transform.parent = list[0].transform;
         }
-        
         i++;
        
     }
 
-    public void DrawSet(Vector3 legPos)
+    public void DrawSet(GameObject legRPos,GameObject legLPos)
     {
-        list[0].transform.position = legPos;
-        list.Clear();
-        i = 0;
+        
+        list[0].transform.position = legRPos.transform.position;
+        list[0].tag = "Leg";
+        list[0].transform.parent = legRPos.transform;
+
+        var newLeg = Instantiate(list[0],legLPos.transform.position,Quaternion.identity);
+
+        newLeg.transform.Rotate(0,180,0);
+        newLeg.tag = "Leg";
+        newLeg.transform.parent = legLPos.transform;
+        newLeg.transform.localScale = list[0].transform.localScale;
+
+        i=0;
+        list.Clear();        
     }
 
     // Update is called once per frame
@@ -46,11 +56,11 @@ public class MousePosition3D : MonoBehaviour
             if(Input.GetMouseButton(0))
             {
                 //mainCamera.transform.parent = brush.transform;
-                Spawn(transform.position);
+                LegCreation(transform.position);
             }
             if(Input.GetMouseButtonUp(0))
             {
-                DrawSet(legPos.transform.position);
+                DrawSet(legRPos,legLPos);
             }    
         }
                

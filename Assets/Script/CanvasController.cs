@@ -7,7 +7,7 @@ public class CanvasController : MonoBehaviour
     public Transform cameraPos;
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
         transform.LookAt(cameraPos);
     }
