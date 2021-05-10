@@ -64,9 +64,33 @@ public class PlayerController : MonoBehaviour
           legL.SetActive(false);
           legZ.SetActive(false);
         }
+        if(activeLegZ==true)
+        {
+         legI.SetActive(false);
+         legT.SetActive(false);
+         legL.SetActive(false);
+         legZ.SetActive(true);
+        }
     }
 
-    //call the leg shape I
+    //Stops the character in the finish line
+    public void OnTriggerEnter(Collider other)
+    {
+        //check if the player entered is the finish line area
+       if(other.tag == "Finish")
+       {
+        activeLegI = false;
+        activeLegL = false;
+        activeLegT = false;
+        activeLegZ = true;
+        Debug.Log("Chegou");        
+       }
+        
+    }
+
+
+    //button pressed
+    //call the leg shape I 
     public void LegI()
     {
         activeLegI = true;
@@ -75,6 +99,7 @@ public class PlayerController : MonoBehaviour
         activeLegZ = false;
     }
 
+    //button pressed
     //call the leg shape L
     public void LegL()
     {
@@ -84,6 +109,7 @@ public class PlayerController : MonoBehaviour
         activeLegZ = false;
     }
 
+    //button pressed
     //call the leg shape T
     public void LegT()
     {
