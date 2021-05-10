@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
        if(other.tag == "Finish")
        {
          myForce.enabled = false;
-        
        }
         
     }
